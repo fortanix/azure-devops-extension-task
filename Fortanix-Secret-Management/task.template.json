@@ -1,0 +1,59 @@
+{
+  "id": "${ID}",
+  "name": "${TASK_NAME}",
+  "friendlyName": "${TASK_NAME}",
+  "description": "Securely fetch the secrets from Fortanix DSM.",
+  "instanceNameFormat": "Fortanix Secret Management",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "${AUTHOR}",
+  "icon": "icon.png",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "inputs": [
+    {
+      "name": "FORTANIX_API_ENDPOINT",
+      "type": "string",
+      "label": "FORTANIX_API_ENDPOINT",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Provide a DSM API ENDPOINT"
+    },
+    {
+      "name": "FORTANIX_API_KEY",
+      "type": "string",
+      "label": "FORTANIX_API_KEY",
+      "defaultValue": "",
+      "required":  true,
+      "helpMarkDown": "Provide a DSM API KEY",
+      "properties": {
+        "isSecret": true
+      }
+    },
+    {
+      "name": "FORTANIX_SECURITY_OBJECT_NAME",
+      "type": "string",
+      "label": "FORTANIX_SECURITY_OBJECT_NAME",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Provide a Fortanix DSM Security Object name"
+    },
+    {
+      "name": "FORTANIX_SECURITY_OBJECT",
+      "type": "string",
+      "label": "FORTANIX_SECURITY_OBJECT",
+      "defaultValue": "FORTANIX_SECURITY_OBJECT",
+      "required": true,
+      "helpMarkDown": "Provide a variable name to store the Fortanix Security Object"
+    }
+  ],
+  "execution": {
+    "Node20_1": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  }
+}

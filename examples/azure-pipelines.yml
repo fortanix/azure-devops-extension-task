@@ -1,0 +1,19 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - script: echo Fortanix Secret Management!
+    displayName: 'Fortanix Azure DevOps extension task'
+# export FORTANIX_API_ENDPOINT as an environment variable
+# export FORTANIX_API_KEY as a secret environment variable
+# Provide the Securiry Object name as FORTANIX_SECURITY_OBJECT_NAME
+# To save the Security Object provide FORTANIX_SECURITY_OBJECT
+  - task: Fortanix-Secret-Management@1
+    inputs:
+      FORTANIX_API_ENDPOINT: '$(FORTANIX_API_ENDPOINT)'
+      FORTANIX_API_KEY: '$(FORTANIX_API_KEY)'
+      FORTANIX_SECURITY_OBJECT_NAME: 'ADF-DEMO'
+      FORTANIX_SECURITY_OBJECT: 'FORTANIX_SECURITY_OBJECT'

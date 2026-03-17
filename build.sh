@@ -37,9 +37,7 @@ else
   echo "tfx installed successfully."
 fi
 # Check if TypeScript compiler exists
-if command -v tsc > /dev/null 2>&1; then
-  echo "tsc is already installed globally"
-elif npx --no-install tsc --version > /dev/null 2>&1; then
+if npx --no-install tsc --version > /dev/null 2>&1; then
   echo "tsc is already installed locally"
 else
   echo "tsc not found — installing it locally"

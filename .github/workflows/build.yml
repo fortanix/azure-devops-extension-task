@@ -7,22 +7,13 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-env:
-  MANIFEST_VERSION: 1
-  ID: 12345678-1234-1234-1234-123456789012  # Dummy GUID
-  EXTENSION_NAME: Secret-Management
-  PUBLISHER_ID: dummy-publisher
-  TASK_NAME: Fortanix-Secret-Management
-  VERSION: 1.0.0
-  AUTHOR: "Fortanix, Inc."
-  AZURE_PIPELINES_VERSION: "5.2.8"
-  TYPE_SCRIPT_VERSION: "5.9.3"
-  TYPE_NODE_VERSION: "25.4.0"
-  TFX_CLI_VERSION: "0.23.1"
-
 jobs:
   typecheck:
     runs-on: ubuntu-latest
+    env:
+      AZURE_PIPELINES_VERSION: "5.2.8"
+      TYPE_SCRIPT_VERSION: "5.9.3"
+      TYPE_NODE_VERSION: "25.4.0"
 
     steps:
       - name: Checkout code
@@ -47,6 +38,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: typecheck
+    env:
+      ID: 12345678-1234-1234-1234-123456789012
+      PUBLISHER_ID: dummy-publisher
 
     steps:
       - name: Checkout code
@@ -58,4 +52,4 @@ jobs:
           node-version: 20
 
       - name: Run build script
-        run: ./build.sh
+        run: bash ./ci.sh

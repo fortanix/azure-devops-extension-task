@@ -23,4 +23,4 @@ sed -i \
   -e "s|^PUBLISHER_ID=<Azure_DevOps_publisher_ID>|PUBLISHER_ID=$CI_PUBLISHER_ID|" \
   "$MANIFEST_FILE"
 
-"$SCRIPT_DIR/build.sh"
+bash -x "$SCRIPT_DIR/build.sh"

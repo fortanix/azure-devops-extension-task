@@ -52,4 +52,4 @@ jobs:
           node-version: 20
 
       - name: Run build script
-        run: bash ./ci.sh
+        run: ./ci.sh

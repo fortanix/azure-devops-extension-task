@@ -1,0 +1,61 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  MANIFEST_VERSION: 1
+  ID: 12345678-1234-1234-1234-123456789012  # Dummy GUID
+  EXTENSION_NAME: Secret-Management
+  PUBLISHER_ID: dummy-publisher
+  TASK_NAME: Fortanix-Secret-Management
+  VERSION: 1.0.0
+  AUTHOR: "Fortanix, Inc."
+  AZURE_PIPELINES_VERSION: "5.2.8"
+  TYPE_SCRIPT_VERSION: "5.9.3"
+  TYPE_NODE_VERSION: "25.4.0"
+  TFX_CLI_VERSION: "0.23.1"
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Create temporary package manifest
+        run: npm init -y
+
+      - name: Install TypeScript check dependencies
+        run: |
+          npm install --save-dev "typescript@$TYPE_SCRIPT_VERSION" "@types/node@$TYPE_NODE_VERSION"
+          npm install --save-exact "azure-pipelines-task-lib@$AZURE_PIPELINES_VERSION"
+
+      - name: Type check task source
+        run: npx tsc --project Fortanix-Secret-Management/tsconfig.json --noEmit
+
+  build:
+    runs-on: ubuntu-latest
+    needs: typecheck
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run build script
+        run: ./build.sh

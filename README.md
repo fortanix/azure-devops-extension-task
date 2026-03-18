@@ -1,15 +1,15 @@
-****Description****
+### Description
 
 Azure DevOps is an end-to-end software development platform that offers an assortment of capabilities intended 
 to organize and accelerate development efforts across the entire application lifecycle.
 To keep the secrets secured in an Azure DevOps pipeline, a Secret Management is required. 
 
-****Solution****
+### Solution
 
 Leverage Fortanix DSM to securely retrieve the secrets at runtime of Azure DevOps pipeline execution.
 Fortanix offers an ADO custom extension Task to retrieve the secrets.
 
-****How to build a custom extension in Azure DevOps that fetches the secrets?****
+#### How to build a custom extension in Azure DevOps that fetches the secrets?
 
 1. Install Node js(Latest version is preferred)
 2. Build the extension
@@ -24,7 +24,7 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
 3. Find the extension in the same directory as <PUBLISHER_ID>.<EXTENSION_NAME>-<VERSION>.vslx
    * eg: Fortanix-ADO.Secret-Management-1.0.0.vslx
 
-****manifest.env Attributes****
+#### manifest.env Attributes
 
 1. MANIFEST_VERSION: Version of manifest
 2. ID: Unique Identifier(UUID), e.g., d9f8b8c2-1b48-4e5c-b0f5-41f2e7cf88a5
@@ -34,7 +34,7 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
 6. VERSION: Version of the extension
 7. AUTHOR: Name of the Author
 
-****How to execute the extension****
+#### How to execute the extension
 
 1. Upload the extension to ADO marketplace
    * https://marketplace.visualstudio.com/manage/publishers/<PUBLISHER_ID>
@@ -51,7 +51,7 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
    * SECRET_VARIABLE_NAME, variable to save the secret value
 9. This will fetch the secret
 
-***Pre-requisites***
+#### Pre-requisites
 
 1. To build the extension, Node.js v20 or above is required
 2. FORTANIX DSM Account

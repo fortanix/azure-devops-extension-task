@@ -11,6 +11,7 @@ This extension helps at runtime of Azure DevOps pipeline execution to securely f
 ### Fortanix DSM
 
 1. Login to Fortanix DSM, eg: amer.smartkey.io
+2. Create or Select an account
 2. Create a Group
 3. Create an App of type API key in the group
 4. Create a Security Object of type Secret and upload the secret

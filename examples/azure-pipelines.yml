@@ -1,0 +1,15 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - script: echo Fortanix Secret Management!
+    displayName: 'Fortanix Azure DevOps extension task'
+  - task: Fortanix-Secret-Management@1
+    inputs:
+      FORTANIX_API_ENDPOINT: '$(FORTANIX_API_ENDPOINT)'
+      FORTANIX_API_KEY: '$(FORTANIX_API_KEY)'
+      FORTANIX_SECURITY_OBJECT_NAME: 'ADF-DEMO'
+      FORTANIX_SECURITY_OBJECT: 'FORTANIX_SECURITY_OBJECT'

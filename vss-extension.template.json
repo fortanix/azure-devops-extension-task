@@ -1,0 +1,41 @@
+{
+  "manifestVersion": "${MANIFEST_VERSION}",
+  "id": "${EXTENSION_NAME}",
+  "name": "${EXTENSION_NAME}",
+  "version": "${VERSION}",
+  "publisher": "${PUBLISHER_ID}",
+  "public": false,
+  "icons": {
+    "default": "images/logo.jpg"        
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Securely fetch the secrets from Fortanix DSM.",
+  "categories": ["Azure Pipelines"],
+  "content": {
+    "details": {
+      "path": "overview.md"
+    },
+    "license": {
+      "path": "LICENSE"
+    }
+  },
+  "files": [
+    {
+      "path": "${TASK_NAME}"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "${TASK_NAME}",
+      "type": "ms.vss-distributed-task.task",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "properties": {
+        "name": "${TASK_NAME}"
+      }
+    }
+  ]
+}

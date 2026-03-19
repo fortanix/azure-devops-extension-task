@@ -13,6 +13,7 @@ cleanup() {
     echo "cleanup the node_modules and json files"
     rm -rf "$SCRIPT_DIR/node_modules" "$SCRIPT_DIR/package.json" "$SCRIPT_DIR/package-lock.json" "$VSS_EXTENSION"
     rm -rf "$TASK_DIR/index.js" "$TASK_JSON"
+    rm -rf "$TASK_DIR/node_modules"
 }
 trap cleanup EXIT
 # Load environment variables
@@ -26,6 +27,7 @@ if command -v npm >/dev/null 2>&1; then
 else
   handle_error "npm not found. Please install it and try again."
 fi
+npm init -y >/dev/null
 # check if tfx-cli is installed
 if command -v tfx > /dev/null 2>&1; then
   echo "tfx is already installed globally."
@@ -36,6 +38,8 @@ else
   npm install --save-dev "tfx-cli@$TFX_CLI_VERSION"
   echo "tfx installed successfully."
 fi
+pushd "$TASK_DIR"
+npm init -y >/dev/null
 # Check if TypeScript compiler exists
 if npx --no-install tsc --version > /dev/null 2>&1; then
   echo "tsc is already installed locally"
@@ -61,7 +65,6 @@ else
   echo "azure-pipelines-task-lib installed successfully."
 fi
 # check if tsconfig.json exists
-pushd "$TASK_DIR"
 if [ ! -f tsconfig.json ]; then
   npx tsc --init
 fi
@@ -72,7 +75,7 @@ echo "Build started"
 # Replace placeholders in the  vss-extension.json
 envsubst < "$SCRIPT_DIR/vss-extension.template.json" > "$VSS_EXTENSION"
 [ -f "$VSS_EXTENSION" ] || handle_error "vss-extension.json was not created."
-echo "vss-extension.json is created."
+echo "$VSS_EXTENSION is created."
 # Replace placeholders in the Fortanix-Secret-Management/task.json
 envsubst < "$TASK_DIR/task.template.json" > "$TASK_JSON"
 [ -f "$TASK_JSON" ] || handle_error "task.json was not created."

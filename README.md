@@ -14,13 +14,15 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
 1. Install Node js(Latest version is preferred)
 2. Build the extension
    * Install tfx-cli, command: npm install -g tfx-cli
-   * Configure manifest.env
+   * Configure manifest.env, Add ID and PUBLISHER_ID.
    * Run ./build.sh
         * This will create the files below:
            * Fortanix-Secret-Management/task.json
            * Fortanix-Secret-Management/package.json
            * Fortanix-Secret-Management/node_modules
            * vss-extension.json
+           * node_modules
+        * Post build, it will delete all the newly created files except the extension. 
 3. Find the extension in the same directory as <PUBLISHER_ID>.<EXTENSION_NAME>-<VERSION>.vslx
    * eg: Fortanix-ADO.Secret-Management-1.0.0.vslx
 

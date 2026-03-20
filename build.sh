@@ -12,8 +12,7 @@ cleanup() {
     # cleanup the node_modules and json files
     echo "cleanup the node_modules and json files"
     rm -rf "$SCRIPT_DIR/node_modules" "$SCRIPT_DIR/package.json" "$SCRIPT_DIR/package-lock.json" "$VSS_EXTENSION"
-    rm -rf "$TASK_DIR/index.js" "$TASK_JSON"
-    rm -rf "$TASK_DIR/node_modules"
+    rm -rf "$TASK_DIR/index.js" "$TASK_JSON" "$TASK_DIR/node_modules" "$TASK_DIR/package.json" "$TASK_DIR/package-lock.json"
 }
 trap cleanup EXIT
 # Load environment variables
@@ -74,11 +73,11 @@ popd
 echo "Build started"
 # Replace placeholders in the  vss-extension.json
 envsubst < "$SCRIPT_DIR/vss-extension.template.json" > "$VSS_EXTENSION"
-[ -f "$VSS_EXTENSION" ] || handle_error "vss-extension.json was not created."
+[ -f "$VSS_EXTENSION" ] || handle_error "$VSS_EXTENSION was not created."
 echo "$VSS_EXTENSION is created."
 # Replace placeholders in the Fortanix-Secret-Management/task.json
 envsubst < "$TASK_DIR/task.template.json" > "$TASK_JSON"
-[ -f "$TASK_JSON" ] || handle_error "task.json was not created."
+[ -f "$TASK_JSON" ] || handle_error "$TASK_JSON was not created."
 echo "$TASK_JSON is created."
 # build the extension
 npx tfx extension create || handle_error "Extension packaging failed."

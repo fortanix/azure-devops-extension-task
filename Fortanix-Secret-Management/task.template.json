@@ -51,9 +51,11 @@
     }
   ],
   "execution": {
-    "Node20_1": {
-      "target": "index.js",
-      "argumentFormat": ""
+    "Node24": {
+      "target": "index.js"
+    },
+    "Node20": {
+      "target": "index.js"
     }
   }
 }

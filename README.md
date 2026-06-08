@@ -13,7 +13,6 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
 
 1. Install Node js(Latest version is preferred)
 2. Build the extension
-   * Install tfx-cli, command: npm install -g tfx-cli
    * Configure manifest.env, Add ID and PUBLISHER_ID.
    * Run ./build.sh
         * This will create the files below:

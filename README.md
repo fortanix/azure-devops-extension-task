@@ -9,21 +9,19 @@ To keep the secrets secured in an Azure DevOps pipeline, a Secret Management is 
 Leverage Fortanix DSM to securely retrieve the secrets at runtime of Azure DevOps pipeline execution.
 Fortanix offers an ADO custom extension Task to retrieve the secrets.
 
-#### How to build a custom extension in Azure DevOps that fetches the secrets?
+#### How to build the Fortanix-Secret-Management extension and upload in the marketplace?
 
-1. Install Node js(Latest version is preferred)
+1. Install Node js(Latest version(20 or above) is preferred)
 2. Build the extension
    * Configure manifest.env, Add ID and PUBLISHER_ID.
    * Run ./build.sh
-        * This will create the files below:
-           * Fortanix-Secret-Management/task.json
-           * Fortanix-Secret-Management/package.json
-           * Fortanix-Secret-Management/node_modules
-           * vss-extension.json
-           * node_modules
-        * Post build, it will delete all the newly created files except the extension. 
 3. Find the extension in the same directory as <PUBLISHER_ID>.<EXTENSION_NAME>-<VERSION>.vslx
-   * eg: Fortanix-ADO.Secret-Management-1.0.0.vslx
+   * eg: Fortanix-ADO.Fortanix-Secret-Management-1.0.0.vslx
+4. Upload the extension
+    1. Go to marketplace https://marketplace.visualstudio.com/manage.
+    2. Select the organization
+    3. Select New extension -> Visual Studio Code
+    4. Upload the extension
 
 #### manifest.env Attributes
 
@@ -37,20 +35,19 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
 
 #### How to execute the extension
 
-1. Upload the extension to ADO marketplace
-   * https://marketplace.visualstudio.com/manage/publishers/<PUBLISHER_ID>
-2. Share it to the ADO organization
-3. Go to the ADO organization -> Oraganization Settings -> Extensions -> Shared -> Install
-4. Create a new project in ADO organization and provide access to any github repository
-5. Create a new pipeline
-6. Configure FORTANIX_API_KEY as a secret in Variables
-7. Go to show assistant and search for Fortanix-Secret-Management
-8. Configure all the listed paramaters:
+1. Go to the marketplace
+   * https://marketplace.visualstudio.com/items?itemName=Fortanix.Fortanix-Secret-Management
+2. Click on "Get it for free", Install it into the ADO organization
+3. Create a new project in ADO organization and provide access to any github repository
+4. Create a new pipeline
+5. Configure FORTANIX_API_KEY as a secret in Variables
+6. Go to show assistant and search for Fortanix-Secret-Management
+7. Configure all the listed paramaters:
    * FORTANIX_API_ENDPOINT, eg: apac.smartkey.io 
    * FORTANIX_API_KEY, eg: $(FORTANIX_API_KEY)
-   * FORTANIX_SECRET, name of a Security Object(SECRET)
-   * SECRET_VARIABLE_NAME, variable to save the secret value
-9. This will fetch the secret
+   * FORTANIX_SECURITY_OBJECT_NAME, name of a Security Object(SECRET)
+   * FORTANIX_SECURITY_OBJECT_NAME, variable to save the Security Object
+9. FORTANIX_SECURITY_OBJECT_NAME can be used for external usage
 
 #### Pre-requisites
 
@@ -61,4 +58,7 @@ Fortanix offers an ADO custom extension Task to retrieve the secrets.
 3. Azure DevOps Organization
    a. Configure Publisher, Project, Github repository 
 
+#### Note
+* Ensure that the version is upgraded when updating this extension (eg: 1.0.0 -> 1.0.1)
+* Never delete an extension that was already uploaded, always update it when making changes.
 

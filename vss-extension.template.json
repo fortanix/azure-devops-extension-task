@@ -1,12 +1,12 @@
 {
-  "manifestVersion": "${MANIFEST_VERSION}",
+  "manifestVersion": ${MANIFEST_VERSION},
   "id": "${EXTENSION_NAME}",
   "name": "${EXTENSION_NAME}",
   "version": "${VERSION}",
   "publisher": "${PUBLISHER_ID}",
   "public": true,
   "icons": {
-    "default": "images/logo.jpg"        
+    "default": "images/logo.png"
   },
   "targets": [
     {
